@@ -41,8 +41,8 @@ app.register_blueprint(SWAGGERUI_BLUEPRINT, url_prefix=SWAGGER_URL)
 CORS(app)
 
 # Environment variables
-API_KEY = "AIzaSyCliEGPHh_Jr5UUqtFg6ZkTR2c7_6xDSSk" # Replace with your valid CUsToM search api key
-CSE_ID = "5029d1ba1565043b6"  # Replace with your valid CSE ID
+API_KEY = os.getenv("API_KEY") # Replace with ur Key from https://developers.google.com/custom-search/v1/introduction
+CSE_ID = os.getenv("CSE_ID") # Replace with your valid CSE ID from  https://programmablesearchengine.google.com/controlpanel/all
 
 
 class SourceChecker:
