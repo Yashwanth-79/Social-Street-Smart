@@ -104,3 +104,4 @@ warcio==1.7.4
 Werkzeug==3.0.3
 wget==3.2
 zope.interface==7.0.1
+goose3
