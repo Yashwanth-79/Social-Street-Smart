@@ -12,3 +12,7 @@ scikit-learn
 tflite
 tflite-runtime
 goose3
+flask
+beautifulsoup4
+groq
+flask-cors
