@@ -327,29 +327,29 @@ def predict():
     
     logger.info(f"Received claim to check: {claim}")
     
-    # Step 1: Check if we can make a direct ML prediction on the claim if we have stored news
-    try:
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
+    # # Step 1: Check if we can make a direct ML prediction on the claim if we have stored news
+    # try:
+    #     conn = sqlite3.connect(DB_PATH)
+    #     cursor = conn.cursor()
         
-        # Get a few news articles to compare with the claim
-        cursor.execute("SELECT content FROM NewsTable LIMIT 10")
-        news_rows = cursor.fetchall()
-        conn.close()
+    #     # Get a few news articles to compare with the claim
+    #     cursor.execute("SELECT content FROM NewsTable LIMIT 10")
+    #     news_rows = cursor.fetchall()
+    #     conn.close()
         
-        for row in news_rows:
-            news_content = row[0]
-            if ML_ENABLED:
-                pred = compare_with_news_content(claim, news_content)
-                if pred == "disagree":
-                    logger.info("ML model determined claim is likely false based on stored news")
-                    return jsonify({'prediction': "Fake"})
-                elif pred == "agree":
-                    logger.info("ML model determined claim is likely true based on stored news")
-                    return jsonify({'prediction': "Genuine"})
+    #     for row in news_rows:
+    #         news_content = row[0]
+    #         if ML_ENABLED:
+    #             pred = compare_with_news_content(claim, news_content)
+    #             if pred == "disagree":
+    #                 logger.info("ML model determined claim is likely false based on stored news")
+    #                 return jsonify({'prediction': "Fake"})
+    #             elif pred == "agree":
+    #                 logger.info("ML model determined claim is likely true based on stored news")
+    #                 return jsonify({'prediction': "Genuine"})
             
-    except Exception as e:
-        logger.error(f"Error checking news content with ML: {str(e)}")
+    # except Exception as e:
+    #     logger.error(f"Error checking news content with ML: {str(e)}")
     
     # Step 2: Get comprehensive data from database
     db_data = get_comprehensive_db_data(claim)
